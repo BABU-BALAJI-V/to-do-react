@@ -4,22 +4,22 @@ const Content = () => {
     const [items,setItems]=useState([
         {
             id:1,
-            checked:true,
+            checked:false,
             item:"Leetcode"
         },
         {
             id:2,
-            checked:true,
+            checked:false,
             item : "Internship"
         },
         {
             id:3,
-            checked:true,
+            checked:false,
             item:"gym"
         },
         {
             id:4,
-            checked:true,
+            checked:false,
             item:"React-Js"
         }
     ]);
@@ -28,12 +28,14 @@ const Content = () => {
         const listItems = items.map((item)=>
         item.id===id?{...item,checked:!item.checked}:item)
         setItems(listItems)
+        localStorage.setItem("todo_list",JSON.stringify(listItems))
     }
     const handleDelete = (id) =>
     {
         const listItems = items.filter((item)=>
         item.id!==id)
         setItems(listItems)
+        localStorage.setItem("todo_list",JSON.stringify(listItems))
     }
   return (
     <main>
@@ -45,7 +47,9 @@ const Content = () => {
                         onChange={()=>handleCheck(item.id)}
                         checked={item.checked}
                     />
-                    <label>{item.item}</label> 
+                    <label 
+                    style={(item.checked)?{TextDecoration:'line-through'}:null}
+                    onDoubleClick={()=>handleCheck(item.id)}>{item.item}</label> 
                     <FaTrashAlt 
                         role = "button"
                         onClick={()=>handleDelete(item.id)}
