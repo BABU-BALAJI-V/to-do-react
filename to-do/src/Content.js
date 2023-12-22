@@ -1,28 +1,60 @@
 import React, { useState } from 'react'
-
+import { FaTrashAlt } from 'react-icons/fa';
 const Content = () => {
-    const [name,setName] = useState("Balaji");
-    function nameChange()
+    const [items,setItems]=useState([
+        {
+            id:1,
+            checked:true,
+            item:"Leetcode"
+        },
+        {
+            id:2,
+            checked:true,
+            item : "Internship"
+        },
+        {
+            id:3,
+            checked:true,
+            item:"gym"
+        },
+        {
+            id:4,
+            checked:true,
+            item:"React-Js"
+        }
+    ]);
+    const handleCheck = (id) =>
     {
-      const name=["Balaji","Babu","Batman"];
-      const num=Math.floor(Math.random()*3);
-      setName(name[num]);
+        const listItems = items.map((item)=>
+        item.id===id?{...item,checked:!item.checked}:item)
+        setItems(listItems)
     }
-    /*
-    const [count,setCount] = useState(0);
-    function incrementFunction()
+    const handleDelete = (id) =>
     {
-        setCount(count+1)
+        const listItems = items.filter((item)=>
+        item.id!==id)
+        setItems(listItems)
     }
-    function decrementFunction()
-    {
-        setCount(count - 1)
-    }
-    */
   return (
     <main>
-        <p>This is {name}</p>
-        <button onClick={nameChange}> Subscribe </button>
+        <ul>
+            {items.map((item) =>(
+                <li className="item" key={item.id}> 
+                    <input
+                        type = "checkbox"
+                        onChange={()=>handleCheck(item.id)}
+                        checked={item.checked}
+                    />
+                    <label>{item.item}</label> 
+                    <FaTrashAlt 
+                        role = "button"
+                        onClick={()=>handleDelete(item.id)}
+                        tabIndex="0"
+                    /> 
+                </li>
+            ))
+            }
+        </ul>
     </main>    
   )
 }
