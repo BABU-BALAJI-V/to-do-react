@@ -60,7 +60,7 @@ const handleSubmit=(e)=>
       setSearch={setSearch}
       />
       <Content 
-        items = {items.filter(item=>(item.item).includes(search))}
+        items = {items.filter(item=>((item.item).toLowerCase()).includes(search))}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
       />
