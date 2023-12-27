@@ -1,0 +1,19 @@
+{
+    "items":[
+        {
+            "id":1,
+            "checked":false,
+            "item":"balaji.in"
+        },
+        {
+            "id":2,
+            "checked":false,
+            "item":"vatsa.in"
+        },
+        {
+            "id":1,
+            "checked":false,
+            "item":"bala.in"
+        }
+    ]
+}
